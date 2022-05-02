@@ -69,10 +69,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 				.apply(params.get(Constant.SQL_FILTER) != null, (String)params.get(Constant.SQL_FILTER))
 		);
 
-		for(SysUserEntity sysUserEntity : page.getRecords()){
-			SysDeptEntity sysDeptEntity = sysDeptService.getById(sysUserEntity.getDeptId());
-			sysUserEntity.setDeptName(sysDeptEntity.getName());
-		}
+//		for(SysUserEntity sysUserEntity : page.getRecords()){
+//			SysDeptEntity sysDeptEntity = sysDeptService.getById(sysUserEntity.getDeptId());
+//			sysUserEntity.setDeptName(sysDeptEntity.getName());
+//		}
 
 		return new PageUtils(page);
 	}
