@@ -27,7 +27,12 @@ public interface SysUserDao extends BaseMapper<SysUserEntity> {
 	 * @param userId  用户ID
 	 */
 	List<String> queryAllPerms(Long userId);
-	
+
+	/**
+	 * 查询超级管理员的所有权限
+	 */
+	List<String> querySuperAdminAllPerms();
+
 	/**
 	 * 查询用户的所有菜单ID
 	 */

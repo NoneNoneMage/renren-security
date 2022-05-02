@@ -8,6 +8,7 @@
 
 package io.renren;
 
+import io.renren.common.application.MageApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

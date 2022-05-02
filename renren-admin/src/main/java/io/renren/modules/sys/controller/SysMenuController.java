@@ -14,6 +14,7 @@ import io.renren.common.utils.Constant;
 import io.renren.common.utils.R;
 import io.renren.modules.sys.entity.SysMenuEntity;
 import io.renren.modules.sys.service.SysMenuService;
+import io.renren.modules.sys.service.SysUserService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,17 @@ public class SysMenuController extends AbstractController {
 	@Autowired
 	private SysMenuService sysMenuService;
 
+	@Autowired
+	private SysUserService sysUserService;
+
 	/**
 	 * 导航菜单
 	 */
 	@RequestMapping("/nav")
 	public R nav(){
 		List<SysMenuEntity> menuList = sysMenuService.getUserMenuList(getUserId());
-		return R.ok().put("menuList", menuList);
+		List<String> pemList = sysUserService.queryAllPerms(getUserId());
+		return R.ok().put("menuList", menuList).put("permissions", pemList);
 	}
 	
 	/**

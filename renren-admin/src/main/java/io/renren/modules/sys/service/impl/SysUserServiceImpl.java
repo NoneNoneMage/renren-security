@@ -23,15 +23,21 @@ import io.renren.modules.sys.service.SysDeptService;
 import io.renren.modules.sys.service.SysUserRoleService;
 import io.renren.modules.sys.service.SysUserService;
 import io.renren.modules.sys.shiro.ShiroUtils;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 /**
@@ -109,4 +115,21 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         	new QueryWrapper<SysUserEntity>().eq("user_id", userId).eq("password", password));
     }
 
+	@Override
+	public List<String> queryAllPerms(Long userId) {
+		Set<String> resultSet = new HashSet<>();
+		List<String> queryResult = null;
+		if(userId == Constant.SUPER_ADMIN){
+			 queryResult = baseMapper.querySuperAdminAllPerms();
+		}
+		else {
+			queryResult = baseMapper.queryAllPerms(userId);
+		}
+		if (CollectionUtils.isNotEmpty(queryResult)) {
+			for (String perm : queryResult) {
+				resultSet.addAll(Arrays.asList(perm.split(",")));
+			}
+		}
+		return resultSet.stream().collect(Collectors.toList());
+	}
 }

@@ -1,0 +1,61 @@
+<configuration scan="true" scanPeriod="60 seconds" debug="true">
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <jmxConfigurator/>
+
+    <property name="ROOT_LEVEL" value="DEBUG" />
+    <property name="ADMIN_LEVEL" value="DEBUG" />
+    <property name="API_LEVEL" value="DEBUG" />
+
+    <property name="LOG_BASE_PATH" value="${HOME}/log" />
+    <property name="ADMIN_LOG_FILE" value="${LOG_BASE_PATH}/${z_app}.log" />
+    <property name="API_LOG_FILE" value="${LOG_BASE_PATH}/${z_app}Api.log" />
+
+    <property name="BASE_FILE_SIZE" value="50MB"/>
+    <property name="BASE_TOTAL_FILE_SIZE" value="150MB"/>
+    <property name="BASE_MAX_HISTORY" value="15"/>
+    <property name="PATTERN" value="%X{logType}|%level|%X{hostAddress}|%X{pid}|%d{yyyy-MM-dd HH:mm:ss:SSS}|%X{operatorId}|%X{busiId}|%F:%L|%M|%X{errorCode}|%thread|%X{messegeCode}|%X{PtxId}|%X{LogExtend}|%message%n"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>${CUSTOMIZED_PATTERN:-${PATTERN}}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ADMIN_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>${CUSTOMIZED_PATTERN:-${PATTERN}}</pattern>
+        </encoder>
+        <File>${ADMIN_LOG_FILE}</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>%d{yyyy-MM-dd}/${z_app}-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+            <maxFileSize>${CUSTOMIZED_FILE_SIZE:-${BASE_FILE_SIZE}}</maxFileSize>
+            <totalSizeCap>${CUSTOMIZED_TOTAL_FILE_SIZE:-${BASE_TOTAL_FILE_SIZE}}</totalSizeCap>
+            <maxHistory>${CUSTOMIZED_MAX_HISTORY:-${BASE_MAX_HISTORY}}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="API_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>${CUSTOMIZED_PATTERN:-${PATTERN}}</pattern>
+        </encoder>
+        <File>${API_LOG_FILE}</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>%d{yyyy-MM-dd}/${z_app}Busi-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+            <maxFileSize>${CUSTOMIZED_FILE_SIZE:-${BASE_FILE_SIZE}}</maxFileSize>
+            <totalSizeCap>${CUSTOMIZED_TOTAL_FILE_SIZE:-${BASE_TOTAL_FILE_SIZE}}</totalSizeCap>
+            <maxHistory>${CUSTOMIZED_MAX_HISTORY:-${BASE_MAX_HISTORY}}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="io.renren" level="${ADMIN_LEVEL}" additivity="true">
+        <appender-ref ref="ADMIN_LOG" />
+    </logger>
+
+    <root level="${ROOT_LEVEL}">
+        <appender-ref ref="ADMIN_LOG" />
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

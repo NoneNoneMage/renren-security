@@ -80,7 +80,17 @@ public class SysLoginController {
 	    
 		return R.ok();
 	}
-	
+
+	/**
+	 * 退出
+	 */
+	@ResponseBody
+	@RequestMapping(value = "sys/logout", method = RequestMethod.POST)
+	public R syslogout() {
+		ShiroUtils.logout();
+		return R.ok();
+	}
+
 	/**
 	 * 退出
 	 */
