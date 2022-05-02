@@ -9,6 +9,7 @@
 			LEFT JOIN sys_role_menu rm on ur.role_id = rm.role_id 
 			LEFT JOIN sys_menu m on rm.menu_id = m.menu_id 
 		where 1=1
+			AND m.perms is not null
 		<if test="userId != null">
 			AND ur.user_id = #{userId}
 		</if>

@@ -11,6 +11,7 @@ package io.renren.modules.sys.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.renren.modules.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public interface SysUserDao extends BaseMapper<SysUserEntity> {
 	 * 查询用户的所有权限
 	 * @param userId  用户ID
 	 */
-	List<String> queryAllPerms(Long userId);
+	List<String> queryAllPerms(@Param("userId") Long userId);
 
 	/**
 	 * 查询超级管理员的所有权限
