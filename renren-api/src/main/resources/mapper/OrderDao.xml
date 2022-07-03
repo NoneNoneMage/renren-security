@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.dao.OrderDao">
+    <sql id="allFields">
+        ORDER_ID
+        ,USER_ID
+        ,RESTAURANT_ID
+        ,CONSIGNEE_ID
+        ,PRICE
+        ,OLD_PRICE
+        ,DESCRIPTION
+        ,STATUS
+        ,PAY_TYPE
+        ,CREATE_TIME
+        ,TIMEOUT_TIME
+        ,UPDATE_TIME
+    </sql>
+    <select id="queryRecentOrderByUSerId" resultType="io.renren.entity.OrderResultEntity" >
+        select
+        <include refid="allFields"/>
+        from tb_order
+        where USER_ID = #{userId}
+        order by ORDER_ID DESC
+        limit #{limit}
+    </select>
+</mapper>
