@@ -111,10 +111,10 @@ CREATE TABLE `sys_log` (
 
 -- 初始数据初时密码111111
 INSERT INTO `sys_user` (`user_id`, `username`, `password`, `salt`, `email`, `mobile`, `status`, `dept_id`, `create_time`) VALUES ('1', 'admin', '2bb87e8f952627a47ad93c57224ed3392e372c3e7b5b514dc34a9310ba48031b', 'YzcmCZNvbXocrsz9dm8e', 'mage@technology.com', '17100000001', '1', '1', '2022-05-02 01:29:00');
-INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('1', '0', '系统管理', NULL, NULL, '0', 'fa fa-cog', '0');
-INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('2', '1', '管理员管理', 'modules/sys/user.html', NULL, '1', 'fa fa-user', '1');
-INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('3', '1', '角色管理', 'modules/sys/role.html', NULL, '1', 'fa fa-user-secret', '2');
-INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('4', '1', '菜单管理', 'modules/sys/menu.html', NULL, '1', 'fa fa-th-list', '3');
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('1', '0', '系统管理', NULL, NULL, '0', 'system', '0');
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('2', '1', '管理员管理', 'modules/sys/user.html', NULL, '1', 'admin', '1');
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('3', '1', '角色管理', 'modules/sys/role.html', NULL, '1', 'role', '2');
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('4', '1', '菜单管理', 'modules/sys/menu.html', NULL, '1', 'menu', '3');
 # INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('5', '1', 'SQL监控', 'druid/sql.html', NULL, '1', 'fa fa-bug', '4');
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('15', '2', '查看', NULL, 'sys:user:list,sys:user:info', '2', NULL, '0');
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('16', '2', '新增', NULL, 'sys:user:save,sys:role:select', '2', NULL, '0');
@@ -128,8 +128,8 @@ INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, 
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('24', '4', '新增', NULL, 'sys:menu:save,sys:menu:select', '2', NULL, '0');
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('25', '4', '修改', NULL, 'sys:menu:update,sys:menu:select', '2', NULL, '0');
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('26', '4', '删除', NULL, 'sys:menu:delete', '2', NULL, '0');
-INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('27', '1', '参数管理', 'modules/sys/config.html', 'sys:config:list,sys:config:info,sys:config:save,sys:config:update,sys:config:delete', '1', 'fa fa-sun-o', '6');
-INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('29', '1', '系统日志', 'modules/sys/log.html', 'sys:log:list', '1', 'fa fa-file-text-o', '7');
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('27', '1', '参数管理', 'modules/sys/config.html', 'sys:config:list,sys:config:info,sys:config:save,sys:config:update,sys:config:delete', '1', 'config', '6');
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('29', '1', '系统日志', 'modules/sys/log.html', 'sys:log:list', '1', 'log', '7');
 # INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('31', '1', '部门管理', 'modules/sys/dept.html', NULL, '1', 'fa fa-file-code-o', '1');
 # INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('32', '31', '查看', NULL, 'sys:dept:list,sys:dept:info', '2', NULL, '0');
 # INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('33', '31', '新增', NULL, 'sys:dept:save,sys:dept:select', '2', NULL, '0');
@@ -163,8 +163,8 @@ CREATE TABLE `sys_oss` (
   PRIMARY KEY (`id`)
 ) ENGINE=`InnoDB` DEFAULT CHARACTER SET utf8 COMMENT='文件上传';
 
-INSERT INTO `sys_config` (`param_key`, `param_value`, `status`, `remark`) VALUES ('CLOUD_STORAGE_CONFIG_KEY', '{\"aliyunAccessKeyId\":\"\",\"aliyunAccessKeySecret\":\"\",\"aliyunBucketName\":\"\",\"aliyunDomain\":\"\",\"aliyunEndPoint\":\"\",\"aliyunPrefix\":\"\",\"qcloudBucketName\":\"\",\"qcloudDomain\":\"\",\"qcloudPrefix\":\"\",\"qcloudSecretId\":\"\",\"qcloudSecretKey\":\"\",\"qiniuAccessKey\":\"NrgMfABZxWLo5B-YYSjoE8-AZ1EISdi1Z3ubLOeZ\",\"qiniuBucketName\":\"ios-app\",\"qiniuDomain\":\"http://7xqbwh.dl1.z0.glb.clouddn.com\",\"qiniuPrefix\":\"upload\",\"qiniuSecretKey\":\"uIwJHevMRWU0VLxFvgy0tAcOdGqasdtVlJkdy6vV\",\"type\":1}', '0', '云存储配置信息');
-INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('30', '1', '文件上传', 'modules/oss/oss.html', 'sys:oss:all', '1', 'fa fa-file-image-o', '6');
+INSERT INTO `sys_config` (`param_key`, `param_value`, `status`, `remark`) VALUES ('CLOUD_STORAGE_CONFIG_KEY', '{\"qdiskPath\":\"/tmp/files\",\"type\":4}', '0', '云存储配置信息');
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('30', '1', '文件上传', 'modules/oss/oss.html', 'sys:oss:all', '1', 'oss', '6');
 
 
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -172,7 +172,7 @@ INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, 
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- 初始化菜单数据
-INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('6', '1', '定时任务', 'modules/job/schedule.html', NULL, '1', 'fa fa-tasks', '5');
+INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('6', '1', '定时任务', 'modules/job/schedule.html', NULL, '1', 'job', '5');
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('7', '6', '查看', NULL, 'sys:schedule:list,sys:schedule:info', '2', NULL, '0');
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('8', '6', '新增', NULL, 'sys:schedule:save', '2', NULL, '0');
 INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, `icon`, `order_num`) VALUES ('9', '6', '修改', NULL, 'sys:schedule:update', '2', NULL, '0');
@@ -371,3 +371,73 @@ CREATE INDEX IDX_QRTZ_FT_J_G ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,JOB_NAME,JOB_GROU
 CREATE INDEX IDX_QRTZ_FT_JG ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,JOB_GROUP);
 CREATE INDEX IDX_QRTZ_FT_T_G ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,TRIGGER_NAME,TRIGGER_GROUP);
 CREATE INDEX IDX_QRTZ_FT_TG ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,TRIGGER_GROUP);
+
+# 门店
+CREATE TABLE `sm_restaurant`
+(
+    `id`             bigint NOT NULL AUTO_INCREMENT,
+    `name`           varchar(255) COMMENT '店铺名称',
+    `avatar_url`     varchar(512) COMMENT '店铺头像图片地址',
+    `status`         tinyint COMMENT '状态  0：禁用   1：正常',
+    `create_time`    datetime COMMENT '创建时间',
+    `create_user_id` bigint COMMENT '创建人',
+    `update_time`    datetime COMMENT '修改时间',
+    `update_user_id` bigint COMMENT '修改人',
+    PRIMARY KEY (`id`)
+) ENGINE = `InnoDB`
+  DEFAULT CHARACTER SET utf8mb4 COMMENT ='门店';
+
+INSERT INTO sys_menu (menu_id, parent_id, name, url, perms, type, icon, order_num) VALUES (41, 0, '门店管理', null, null, 0, 'mendian', 0);
+INSERT INTO sys_menu (menu_id, parent_id, name, url, perms, type, icon, order_num) VALUES (42, 41, '门店管理', 'modules/sm/restaurant.html', null, 1, 'mendian', 0);
+INSERT INTO sys_menu (menu_id, parent_id, name, url, perms, type, icon, order_num) VALUES (43, 42, '查看', null, 'sm:restaurant:list,sm:restaurant:info', 2, null, 0);
+INSERT INTO sys_menu (menu_id, parent_id, name, url, perms, type, icon, order_num) VALUES (44, 42, '新增', null, 'sm:restaurant:save', 2, null, 0);
+INSERT INTO sys_menu (menu_id, parent_id, name, url, perms, type, icon, order_num) VALUES (45, 42, '修改', null, 'sm:restaurant:update', 2, null, 0);
+INSERT INTO sys_menu (menu_id, parent_id, name, url, perms, type, icon, order_num) VALUES (46, 42, '删除', null, 'sm:restaurant:delete', 2, null, 0);
+INSERT INTO sys_menu (menu_id, parent_id, name, url, perms, type, icon, order_num) VALUES (47, 42, '菜品管理', null, 'sm:restaurant:manageGoods', 2, null, 0);
+
+# 菜品目录
+CREATE TABLE `sm_goods_folder`
+(
+    `id`             bigint NOT NULL AUTO_INCREMENT,
+    `restaurant_id`  bigint COMMENT  '门店id',
+    `name`           varchar(255) COMMENT '目录名称',
+    `type`           tinyint COMMENT '目录类型',
+    `status`         tinyint COMMENT '状态  0：禁用   1：正常',
+    `create_time`    datetime COMMENT '创建时间',
+    `create_user_id` bigint COMMENT '创建人',
+    `update_time`    datetime COMMENT '修改时间',
+    `update_user_id` bigint COMMENT '修改人',
+    PRIMARY KEY (`id`)
+) ENGINE = `InnoDB`
+  DEFAULT CHARACTER SET utf8mb4 COMMENT ='菜品目录';
+
+# 菜品目录
+CREATE TABLE `sm_goods`
+(
+    `id`             bigint NOT NULL AUTO_INCREMENT,
+    `folder_Id`      bigint COMMENT  '类目id',
+    `name`           varchar(255) COMMENT '目录名称',
+    `price`          decimal(6,2) COMMENT '目录类型',
+    `old_price`      decimal(6,2) COMMENT '目录类型',
+    `description`    varchar(255) COMMENT '概述',
+    `info`           varchar(4096) COMMENT '详细介绍',
+    `avatar_url`     varchar(512) COMMENT '商品图标',
+    `image_url`      varchar(512) COMMENT '商品大图',
+    `status`         tinyint COMMENT '状态  0：禁用   1：正常',
+    `create_time`    datetime COMMENT '创建时间',
+    `create_user_id` bigint COMMENT '创建人',
+    `update_time`    datetime COMMENT '修改时间',
+    `update_user_id` bigint COMMENT '修改人',
+    PRIMARY KEY (`id`)
+) ENGINE = `InnoDB`
+  DEFAULT CHARACTER SET utf8mb4 COMMENT ='菜品';
+
+alter table sm_restaurant add column min_price_tip decimal(6,2) default 0 comment '起送价格';
+alter table sm_restaurant add column shipping_fee_tip decimal(6,2) default 0 comment '配送费用';
+alter table sm_restaurant add column average_price_tip decimal(6,2) default 0 comment '人均价格';
+alter table sm_restaurant add column score decimal(2,1) default 0 comment '评分';
+
+alter table sm_restaurant add column description varchar(16) default '商家配送' comment '简要描述';
+alter table sm_restaurant add column delivery_time INTEGER default 60 comment '送达时间';
+alter table sm_restaurant add column bulletin varchar(2048) comment '公告';
+alter table sm_goods add column rating INTEGER default 100 comment '好评率';

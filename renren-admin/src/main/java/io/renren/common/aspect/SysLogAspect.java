@@ -81,6 +81,9 @@ public class SysLogAspect {
 		Object[] args = joinPoint.getArgs();
 		try{
 			String params = new Gson().toJson(args[0]);
+			if (params.length() > 5000) {
+				params = params.substring(0, 5000);
+			}
 			sysLog.setParams(params);
 		}catch (Exception e){
 

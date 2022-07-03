@@ -9,6 +9,7 @@
 package io.renren.interceptor;
 
 
+import io.renren.annotation.IgnoreSession;
 import io.renren.annotation.Login;
 import io.renren.common.exception.RRException;
 import io.renren.entity.TokenEntity;
@@ -37,13 +38,19 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Login annotation;
+        boolean ignore = false;
         if(handler instanceof HandlerMethod) {
             annotation = ((HandlerMethod) handler).getMethodAnnotation(Login.class);
+            ignore = ((HandlerMethod) handler).hasMethodAnnotation(IgnoreSession.class);
         }else{
             return true;
         }
 
         if(annotation == null){
+            return true;
+        }
+
+        if(ignore) {
             return true;
         }
 

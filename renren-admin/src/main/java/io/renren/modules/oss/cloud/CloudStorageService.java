@@ -75,4 +75,8 @@ public abstract class CloudStorageService {
      */
     public abstract String uploadSuffix(InputStream inputStream, String suffix);
 
+    public byte[] downloadFile(String path) {
+        return null;
+    }
+
 }

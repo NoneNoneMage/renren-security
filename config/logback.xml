@@ -6,7 +6,7 @@
     <property name="ADMIN_LEVEL" value="DEBUG" />
     <property name="API_LEVEL" value="DEBUG" />
 
-    <property name="LOG_BASE_PATH" value="${HOME}/log" />
+    <property name="LOG_BASE_PATH" value="${MAGE_HOME}/log" />
     <property name="ADMIN_LOG_FILE" value="${LOG_BASE_PATH}/${z_app}.log" />
     <property name="API_LOG_FILE" value="${LOG_BASE_PATH}/${z_app}Api.log" />
 

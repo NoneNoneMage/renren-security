@@ -36,9 +36,10 @@ public final class OSSFactory {
             return new AliyunCloudStorageService(config);
         }else if(config.getType() == Constant.CloudService.QCLOUD.getValue()){
             return new QcloudCloudStorageService(config);
+        }else if(config.getType() == Constant.CloudService.DISK.getValue()){
+            return new DiskStorageService(config);
         }
 
         return null;
     }
-
 }

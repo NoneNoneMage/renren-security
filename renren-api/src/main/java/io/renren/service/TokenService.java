@@ -33,4 +33,5 @@ public interface TokenService extends IService<TokenEntity> {
 	 */
 	void expireToken(long userId);
 
+	void expireToken(String token);
 }

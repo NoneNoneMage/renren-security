@@ -11,6 +11,7 @@ package io.renren.modules.oss.cloud;
 
 import io.renren.common.validator.group.AliyunGroup;
 import io.renren.common.validator.group.QcloudGroup;
+import io.renren.common.validator.group.QdiskGroup;
 import io.renren.common.validator.group.QiniuGroup;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
@@ -32,7 +33,7 @@ public class CloudStorageConfig implements Serializable {
     /**
      * 类型 1：七牛  2：阿里云  3：腾讯云
      */
-    @Range(min=1, max=3, message = "类型错误")
+    @Range(min=1, max=4, message = "类型错误")
     private Integer type;
 
     @NotBlank(message="七牛绑定的域名不能为空", groups = QiniuGroup.class)
@@ -73,5 +74,8 @@ public class CloudStorageConfig implements Serializable {
     private String qcloudBucketName;
     @NotBlank(message="所属地区不能为空", groups = QcloudGroup.class)
     private String qcloudRegion;
+
+    @NotNull(message="主机路径不能为空", groups = QdiskGroup.class)
+    private String qdiskPath;
 
 }

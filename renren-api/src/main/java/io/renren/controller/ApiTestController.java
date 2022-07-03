@@ -26,7 +26,7 @@ import springfox.documentation.annotations.ApiIgnore;
  * @author Mark sunlightcs@gmail.com
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 @Api(tags="测试接口")
 public class ApiTestController {
 

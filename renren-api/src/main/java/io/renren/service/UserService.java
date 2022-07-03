@@ -23,6 +23,7 @@ public interface UserService extends IService<UserEntity> {
 
 	UserEntity queryByMobile(String mobile);
 
+	UserEntity queryByName(String name);
 	/**
 	 * 用户登录
 	 * @param form    登录表单

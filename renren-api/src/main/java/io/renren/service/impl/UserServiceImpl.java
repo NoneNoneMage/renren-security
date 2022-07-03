@@ -37,13 +37,19 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
 	}
 
 	@Override
+	public UserEntity queryByName(String name) {
+		return baseMapper.selectOne(new QueryWrapper<UserEntity>().eq("username", name));
+	}
+
+	@Override
 	public Map<String, Object> login(LoginForm form) {
-		UserEntity user = queryByMobile(form.getMobile());
-		Assert.isNull(user, "手机号或密码错误");
+		UserEntity user = queryByName(form.getUsername());
+		Assert.isNull(user, "用户名或密码错误");
 
 		//密码错误
-		if(!user.getPassword().equals(DigestUtils.sha256Hex(form.getPassword()))){
-			throw new RRException("手机号或密码错误");
+//		DigestUtils.sha256Hex(form.getPassword());
+		if(!user.getPassword().equals(form.getPassword())){
+			throw new RRException("用户名或密码错误");
 		}
 
 		//获取登录token
@@ -51,6 +57,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
 
 		Map<String, Object> map = new HashMap<>(2);
 		map.put("token", tokenEntity.getToken());
+		map.put("userName", user.getUsername());
 		map.put("expire", tokenEntity.getExpireTime().getTime() - System.currentTimeMillis());
 
 		return map;

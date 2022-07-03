@@ -29,7 +29,7 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 @Api(tags="登录接口")
 public class ApiLoginController {
     @Autowired
@@ -53,8 +53,8 @@ public class ApiLoginController {
     @Login
     @PostMapping("logout")
     @ApiOperation("退出")
-    public R logout(@ApiIgnore @RequestAttribute("userId") long userId){
-        tokenService.expireToken(userId);
+    public R logout(@ApiIgnore @RequestHeader("token") String token){
+        tokenService.expireToken(token);
         return R.ok();
     }
 

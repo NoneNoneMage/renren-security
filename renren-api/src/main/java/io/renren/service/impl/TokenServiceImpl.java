@@ -63,6 +63,16 @@ public class TokenServiceImpl extends ServiceImpl<TokenDao, TokenEntity> impleme
 		this.saveOrUpdate(tokenEntity);
 	}
 
+	@Override
+	public void expireToken(String token) {
+		Date now = new Date();
+		TokenEntity tokenEntity = queryByToken(token);
+		tokenEntity.setToken(token);
+		tokenEntity.setUpdateTime(now);
+		tokenEntity.setExpireTime(now);
+		this.saveOrUpdate(tokenEntity);
+	}
+
 	private String generateToken(){
 		return UUID.randomUUID().toString().replace("-", "");
 	}

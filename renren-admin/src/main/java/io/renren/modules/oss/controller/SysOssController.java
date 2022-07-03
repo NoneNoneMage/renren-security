@@ -17,6 +17,7 @@ import io.renren.common.utils.R;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.common.validator.group.AliyunGroup;
 import io.renren.common.validator.group.QcloudGroup;
+import io.renren.common.validator.group.QdiskGroup;
 import io.renren.common.validator.group.QiniuGroup;
 import io.renren.modules.oss.cloud.CloudStorageConfig;
 import io.renren.modules.oss.cloud.OSSFactory;
@@ -92,6 +93,9 @@ public class SysOssController {
 		}else if(config.getType() == Constant.CloudService.QCLOUD.getValue()){
 			//校验腾讯云数据
 			ValidatorUtils.validateEntity(config, QcloudGroup.class);
+		}else if(config.getType() == Constant.CloudService.DISK.getValue()){
+			//校验腾讯云数据
+			ValidatorUtils.validateEntity(config, QdiskGroup.class);
 		}
 
         sysConfigService.updateValueByKey(KEY, new Gson().toJson(config));
